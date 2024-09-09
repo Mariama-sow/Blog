@@ -1,0 +1,43 @@
+{% extends "Articles/Layout.html" %}
+
+{% block content %}
+<body class="container">
+    <h1>Ecrivez votre Article</h1>
+    <form action="" method="post" enctype="multipart/form-data"> <!-- Ajout de enctype -->
+        {% csrf_token %}
+        
+        <div class="row">
+            <div class="col">
+                <label for="title">Titre</label>
+                <input type="text" name="title" id="title" class="form-control"><br>
+                <label for="sumary">Resume</label>
+                <input type="text" name="sumary" id="sumary" class="form-control"><br>
+                <label for="date_pub">Date_publication</label>
+                <input type="date" name="date_pub" id="date_pub" class="form-control"><br>
+                <label for="cover">Image</label> <!-- Nouveau champ pour l'image -->
+                <input type="file" name="cover" id="cover" class="form-control"><br>
+            </div>
+            <div class="col">
+                <textarea name="content" id="content" cols="30" rows="10"></textarea><br>
+            </div>
+        </div>
+     {% if form.errors %}
+        <div class="alert alert-danger">
+            <ul>
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+        <input type="submit" value="Enregistre" class="btn btn-primary">
+        <input type="reset" value="Annuler" class="btn btn-danger">
+    </form>
+</body>
+{% endblock content %}

@@ -1,0 +1,31 @@
+{% extends "Articles/Layout.html" %}
+    
+    {% block content %}
+        <h1>Connexion</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            {% for field in form %}
+            {{ field.label_tag }}
+                {% if field.errors %}
+                    <ul>
+                        {% for error in field.errors %}
+                            <li><strong style="color: red;">{{ error|escape }}</strong></li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+                {{ field }}
+            {% endfor %}
+            
+            <input type="submit" value="Connexion" class="btn btn-primary">
+            <input type="reset" value="Annuler" class="btn btn-danger">
+
+        </form>
+        <div class="row">
+            <p>
+                <a href="{% url 'accounts:create' %}">Creer un compte</a>
+            </p>
+        </div>
+    
+    {% endblock content %}
+    
