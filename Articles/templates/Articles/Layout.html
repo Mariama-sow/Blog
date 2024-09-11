@@ -3,13 +3,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="{% static 'articles/bootstrap.css' %} ">
+    <link rel="stylesheet" href="{% static 'articles/bootstrap.css' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Articles</title>
+    <title>Articles</title>
 </head>
-{% include "Articles/nav_bar.html" %}
 <body class="container">
-  
-    {% block content %} {% endblock content %}
+    {% include "Articles/nav_bar.html" %}
+    {% block content %}
+    {% endblock content %}
 </body>
 </html>
